@@ -104,7 +104,165 @@
 
 # ENDBLOCK # Verify Inventory and Definition
 # STARTBLOCK # Prepare Nodes
-
+- name: check firewall service
+  service_facts:
+- name: create firewall rules
+  firewalld:
+    zone: public
+    port: "{{ item }}"
+    state: enabled
+    immediate: true
+    permanent: true
+  with_items:
+    - 7180/tcp
+    - 7183/tcp
+    - 9866/tcp
+    - 9865/tcp
+    - 9865/tcp
+    - 9867/tcp
+    - 9870/tcp
+    - 9871/tcp
+    - 8020/tcp
+    - 8022/tcp
+    - 8032/tcp
+    - 8033/tcp
+    - 8080/tcp
+    - 8090/tcp
+    - 8042/tcp
+    - 8044/tcp
+    - 19890/tcp
+    - 22001/tcp
+    - 22002/tcp
+    - 22102/tcp
+    - 8085/tcp
+    - 9090/tcp
+    - 9095/tcp
+    - 11060/tcp
+    - 9083/tcp
+    - 10000/tcp
+    - 10002/tcp
+    - 8888/tcp
+    - 8889/tcp
+    - 21000/tcp
+    - 21050/tcp
+    - 25000/tcp
+    - 25010/tcp
+    - 25020/tcp
+    - 9092/tcp
+    - 9093/tcp
+    - 38083/tcp
+    - 38085/tcp
+    - 8443/tcp
+    - 8444/tcp
+    - 7051/tcp
+    - 8051/tcp
+    - 7050/tcp
+    - 8050/tcp
+    - 11000/tcp
+    - 11443/tcp
+    - 11443/tcp
+    - 9862/tcp
+    - 9874/tcp
+    - 9875/tcp
+    - 9876/tcp
+    - 9877/tcp
+    - 9882/tcp
+    - 9883/tcp
+    - 9858/tcp
+    - 9859/tcp
+    - 9878/tcp
+    - 9879/tcp
+    - 9891/tcp
+    - 9888/tcp
+    - 9889/tcp
+    - 6080/tcp
+    - 6182/tcp
+    - 5181/tcp
+    - 8983/tcp
+    - 8985/tcp
+    - 7077/tcp
+    - 7078/tcp
+    - 18080/tcp
+    - 18081/tcp
+    - 18088/tcp
+    - 16000/tcp
+    - 8885/tcp
+    - 8886/tcp
+    - 8899/tcp
+    - 7788/tcp
+    - 7789/tcp
+    - 7790/tcp
+    - 7791/tcp
+    - 8585/tcp
+    - 8587/tcp
+    - 8586/tcp
+    - 8588/tcp
+    - 9991/tcp
+    - 6670/tcp
+    - 6671/tcp
+    - 2181/tcp
+    - 10090/tcp
+    - 54758/tcp
+    - 9868/tcp
+    - 9869/tcp
+    - 8485/tcp
+    - 8480/tcp
+    - 8481/tcp
+    - 8014/tcp
+    - 8030/tcp
+    - 8031/tcp
+    - 8041/tcp
+    - 8040/tcp
+    - 10020/tcp
+    - 10033/tcp
+    - 13562/tcp
+    - 8082/tcp
+    - 8080/tcp
+    - 8081/tcp
+    - 16001/tcp
+    - 2181/tcp
+    - 2888/tcp
+    - 3888/tcp
+    - 22000/tcp
+    - 23000/tcp
+    - 24000/tcp
+    - 23020/tcp
+    - 26000/tcp
+    - 9092/tcp
+    - 9093/tcp
+    - 9393/tcp
+    - 9394/tcp
+    - 38084/tcp
+    - 24042/tcp
+    - 9872/tcp
+    - 9861/tcp
+    - 9863/tcp
+    - 9864/tcp
+    - 38084/tcp
+    - 24042/tcp
+    - 9872/tcp
+    - 9861/tcp
+    - 9863/tcp
+    - 9860/tcp
+    - 9894/tcp
+    - 9895/tcp
+    - 8765/tcp
+    - 8993/tcp
+    - 8995/tcp
+    - 7337/tcp
+    - 2888/tcp
+    - 3888/tcp
+    - 3181/tcp
+    - 4181/tcp
+    - 9010/tcp
+    - 6670/tcp
+    - 6671/tcp
+    - 9997/tcp
+    - 38083/tcp
+    - 3306/tcp
+  when: ansible_facts.services['firewalld.service'].state == "running"
+  ignore_errors: yes    
+    
 - name: Apply OS pre-requisite configurations
   hosts: cloudera_manager, cluster, ca_server
   become: yes
