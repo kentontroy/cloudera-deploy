@@ -266,7 +266,11 @@
         - 9997/tcp
         - 38083/tcp
         - 3306/tcp
-
+  tags:
+    - os
+    - default_cluster
+    - full_cluster
+    
 - name: Apply OS pre-requisite configurations
   hosts: cloudera_manager, cluster, ca_server
   become: yes
