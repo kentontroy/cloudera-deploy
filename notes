@@ -1,0 +1,6 @@
+ansible-playbook /runner/project/cloudera-deploy/main.yml \
+ -e "definition_path=/runner/project/cloudera-deploy-definitions/7.1.x/spark3/" \
+ -e "abs_profile=/runner/project/cloudera-deploy-definitions/7.1.x/spark3/profile.yml" \
+ -e "repo_username=70225f50-3c5b-43e7-b8f3-01cff397defa" \
+ -e "repo_password=e8501e20dc14" \
+ -t verify
